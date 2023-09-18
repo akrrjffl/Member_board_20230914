@@ -57,4 +57,8 @@ public class MemberService {
         return memberRepository.login(memberDTO);
 
     }
+
+    public void delete(Long id) {
+        memberRepository.delete(id);
+    }
 }
