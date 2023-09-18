@@ -36,3 +36,4 @@ public class MemberRepository {
         return sql.selectOne("Member.login", memberDTO);
     }
 }
+

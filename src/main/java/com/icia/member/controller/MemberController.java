@@ -36,7 +36,7 @@ public class MemberController {
         return "memberPages/memberList";
     }
 
-    @GetMapping("")
+    @GetMapping("/detail")
     public String findById(@RequestParam("id") Long id, Model model) {
         MemberDTO memberDTO = memberService.findById(id);
         model.addAttribute("member", memberDTO);
@@ -50,10 +50,9 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
-        boolean loginResult = memberService.login(memberDTO);
-        if(loginResult) {
-            session.setAttribute("loginEmail", memberDTO.getMemberEmail());
-            model.addAttribute("email", memberDTO.getMemberEmail());
+        MemberDTO loginResult = memberService.login(memberDTO);
+        if(loginResult != null) {
+            session.setAttribute("loginMember", loginResult);
             return "/memberPages/memberMain";
         } else {
             return "/memberPages/memberLogin";
@@ -62,7 +61,7 @@ public class MemberController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("loginEmail");
+        session.removeAttribute("loginMember");
         return "redirect:/";
     }
 }
