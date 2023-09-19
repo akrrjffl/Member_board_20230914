@@ -53,9 +53,18 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    public MemberDTO login(MemberDTO memberDTO) {
-        return memberRepository.login(memberDTO);
+//    public MemberDTO login(MemberDTO memberDTO) {
+//        return memberRepository.login(memberDTO);
+//
+//    }
 
+    public boolean login(MemberDTO memberDTO) {
+        MemberDTO dto = memberRepository.login(memberDTO);
+        if(dto != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void delete(Long id) {

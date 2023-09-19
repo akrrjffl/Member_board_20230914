@@ -3,7 +3,7 @@
   <ul class="menu">
     <li class="menu-item">
       <a href="/">index</a>
-    </li>z
+    </li>
     <li class="menu-item">
       <a href="/member/save">회원가입</a>
     </li>

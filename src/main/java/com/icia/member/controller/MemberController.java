@@ -48,17 +48,29 @@ public class MemberController {
         return "memberPages/memberLogin";
     }
 
+//    @PostMapping("/login")
+//    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
+//        MemberDTO loginResult = memberService.login(memberDTO);
+//        if(loginResult != null) {
+//            session.setAttribute("loginMember", loginResult);
+//            model.addAttribute("email", memberDTO.getMemberEmail());
+//            return "/memberPages/memberMain";
+//        } else {
+//            return "/memberPages/memberLogin";
+//        }
+//    }
+
     @PostMapping("/login")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
-        MemberDTO loginResult = memberService.login(memberDTO);
-        if(loginResult != null) {
-            session.setAttribute("loginMember", loginResult);
+        boolean loginResult = memberService.login(memberDTO);
+        if(loginResult) {
+            session.setAttribute("loginEmail", memberDTO.getMemberEmail());
+            model.addAttribute("email", memberDTO.getMemberEmail());
             return "/memberPages/memberMain";
         } else {
             return "/memberPages/memberLogin";
         }
     }
-
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginMember");

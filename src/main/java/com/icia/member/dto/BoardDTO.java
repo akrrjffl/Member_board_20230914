@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PostDTO {
+public class BoardDTO {
     private Long id;
     private String boardTitle;
     private String boardWriter;
